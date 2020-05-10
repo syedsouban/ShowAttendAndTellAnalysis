@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="animate.css">
+
+</head>
+<body style="font-size: 1.5rem;">
+   <div style="container-fluid hello">
+<form  method="post" enctype="multipart/form-data">
+{% csrf_token %}
+  <div style="width:90%;margin: 0 auto;text-align: center;display: block;border: 4px dashed lightblue;padding:20px;">
+  <!-- <label>Blind Vision</label> -->
+
+<img id="im"  class="img-fluid" style="height:50%;width:50%;" src="https://i.pinimg.com/originals/57/bb/66/57bb66cb4895565d755910654a6b0c80.jpg">
+<p id="tt"></p>
+      <br>
+  <input style="
+                color: white;
+          border-radius: 4px;
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                background: rgb(66, 184, 221);
+                margin-top:30px;
+         "
+                type="file" accept="image/*;capture=camera" value="Take a picture" name="myfile">
+  <br>
+  <button style=" color: white;
+          border-radius: 8px;
+                 border:1px solid white;
+                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                  background: rgb(28, 184, 65);
+                 margin-top:20px;
+                 padding: 10px 20px 10px 20px;"
+
+          type="submit">Upload</button>
+    </div>
+</form>
+       </div>
+  <br>
+<script>
+
+  document.getElementById('tt').innerHTML='{{sentence}}';
+
+  document.getElementById('im').src='http://'+document.location.host+'{{uploaded_file_url}}';
+  console.log(document.location.host+'{{uploaded_file_url}}')
+  var msg = new SpeechSynthesisUtterance('{{sentence}}');
+  window.speechSynthesis.speak(msg);
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
+{% endblock %}
